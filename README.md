@@ -2,6 +2,7 @@
 pole rod staff based weapon for short range area events
 
 Hardware: 
+
 1 x gyro sensor 
 
 1 x piezo buzzer & 1 x npn bipolar junction transistor 
