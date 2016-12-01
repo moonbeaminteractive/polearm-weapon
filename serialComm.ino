@@ -2,7 +2,7 @@ const int buttonPin = 2;     // the number of the pushbutton pin
  
 // variables will change:
 int buttonState = 0;   
-char  text[100] = "Text to be transmitted";
+char text = "a";
 
 void setup()
 {
