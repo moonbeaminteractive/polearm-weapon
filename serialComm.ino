@@ -1,4 +1,6 @@
-const int buttonPin = 2;     // the number of the pushbutton pin
+const int buttonRPin = 2;     // the number of the pushbutton pin
+const int buttonGPin = 3;     // the number of the pushbutton pin
+const int buttonBPin = 4;     // the number of the pushbutton pin
  
 // variables will change:
 int buttonRState = 0;   
@@ -17,7 +19,9 @@ void setup()
 
 void loop()
 {
-  buttonState = digitalRead(buttonPin);
+  buttonRState = digitalRead(buttonRPin);
+  buttonGState = digitalRead(buttonGPin);
+  buttonBState = digitalRead(buttonBPin);
 
   //receive data
   if (Serial.available() > 0) {
