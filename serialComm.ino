@@ -1,8 +1,12 @@
 const int buttonPin = 2;     // the number of the pushbutton pin
  
 // variables will change:
-int buttonState = 0;   
-char text = "a";
+int buttonRState = 0;   
+int buttonGState = 0;   
+int buttonBState = 0;   
+char RText = "r";
+char GText = "g";
+char BText = "b";
 int incomingByte = 0;
 
 void setup()
@@ -23,8 +27,16 @@ void loop()
   }
 
   //send data
-  if (buttonState == HIGH) {
-    Serial.write(text);
+  if (buttonRState == HIGH) {
+    Serial.write(RText);
+    delay(50);
+  }
+   if (buttonGState == HIGH) {
+    Serial.write(GText);
+    delay(50);
+  }
+   if (buttonBState == HIGH) {
+    Serial.write(BText);
     delay(50);
   }
 }
