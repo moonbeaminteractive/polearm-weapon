@@ -217,4 +217,44 @@ Text GLabel 5050 1450 3    60   Input ~ 0
 GND
 Text GLabel 4950 1450 3    60   Input ~ 0
 10
+Text GLabel 2400 2300 3    60   Input ~ 0
+2
+Text GLabel 2500 2300 3    60   Input ~ 0
+e
+Text GLabel 2600 2300 3    60   Input ~ 0
+4
+Text GLabel 3100 1350 1    60   Input ~ 0
+10
+Text GLabel 3000 1350 1    60   Input ~ 0
+11
+Text GLabel 2900 1350 1    60   Input ~ 0
+12
+Text GLabel 2800 1350 1    60   Input ~ 0
+13
+Text GLabel 2700 1350 1    60   Input ~ 0
+A0
+Text GLabel 2600 1350 1    60   Input ~ 0
+A1
+Text GLabel 2500 1350 1    60   Input ~ 0
+A2
+Text GLabel 2100 1350 1    60   Input ~ 0
+GND
+Text GLabel 2300 1350 1    60   Input ~ 0
+PWR
+Text GLabel 2000 2300 3    60   Input ~ 0
+TX
+Text GLabel 2100 2300 3    60   Input ~ 0
+RX
+Text GLabel 2300 2300 3    60   Input ~ 0
+GND
+Text GLabel 2700 2300 3    60   Input ~ 0
+5
+Text GLabel 2800 2300 3    60   Input ~ 0
+6
+Text GLabel 2900 2300 3    60   Input ~ 0
+7
+Text GLabel 3000 2300 3    60   Input ~ 0
+8
+Text GLabel 3100 2300 3    60   Input ~ 0
+9
 $EndSCHEMATC

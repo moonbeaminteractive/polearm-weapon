@@ -50,7 +50,7 @@ U 1 1 58347303
 P 2550 2100
 F 0 "P2" H 2550 2750 50  0000 C CNN
 F 1 "CONN_01X12" V 2650 2100 50  0000 C CNN
-F 2 "" H 2550 2100 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12" H 2550 2100 50  0001 C CNN
 F 3 "" H 2550 2100 50  0000 C CNN
 	1    2550 2100
 	0    -1   -1   0   
@@ -61,7 +61,7 @@ U 1 1 5834738F
 P 2550 1550
 F 0 "P1" H 2550 2200 50  0000 C CNN
 F 1 "CONN_01X12" V 2650 1550 50  0000 C CNN
-F 2 "" H 2550 1550 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12_Pitch2.00mm" H 2550 1550 50  0001 C CNN
 F 3 "" H 2550 1550 50  0000 C CNN
 	1    2550 1550
 	0    -1   1    0   
@@ -72,7 +72,7 @@ U 1 1 5840678B
 P 3700 1400
 F 0 "P3" H 3700 1700 50  0000 C CNN
 F 1 "GYRO" V 3800 1400 50  0000 C CNN
-F 2 "" H 3700 1400 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x05" H 3700 1400 50  0001 C CNN
 F 3 "" H 3700 1400 50  0000 C CNN
 	1    3700 1400
 	0    -1   -1   0   
@@ -183,7 +183,7 @@ U 1 1 5840776A
 P 4450 1400
 F 0 "P4" H 4450 1650 50  0000 C CNN
 F 1 "DOTSTAR" V 4550 1400 50  0000 C CNN
-F 2 "" H 4450 1400 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04" H 4450 1400 50  0001 C CNN
 F 3 "" H 4450 1400 50  0000 C CNN
 	1    4450 1400
 	0    -1   -1   0   
@@ -217,10 +217,44 @@ Text GLabel 5050 1450 3    60   Input ~ 0
 GND
 Text GLabel 4950 1450 3    60   Input ~ 0
 10
-Text GLabel 2100 2300 3    60   Input ~ 0
+Text GLabel 2400 2300 3    60   Input ~ 0
 2
-Text GLabel 2200 2300 3    60   Input ~ 0
+Text GLabel 2500 2300 3    60   Input ~ 0
 e
-Text GLabel 2300 2300 3    60   Input ~ 0
+Text GLabel 2600 2300 3    60   Input ~ 0
 4
+Text GLabel 3100 1350 1    60   Input ~ 0
+10
+Text GLabel 3000 1350 1    60   Input ~ 0
+11
+Text GLabel 2900 1350 1    60   Input ~ 0
+12
+Text GLabel 2800 1350 1    60   Input ~ 0
+13
+Text GLabel 2700 1350 1    60   Input ~ 0
+A0
+Text GLabel 2600 1350 1    60   Input ~ 0
+A1
+Text GLabel 2500 1350 1    60   Input ~ 0
+A2
+Text GLabel 2100 1350 1    60   Input ~ 0
+GND
+Text GLabel 2300 1350 1    60   Input ~ 0
+PWR
+Text GLabel 2000 2300 3    60   Input ~ 0
+TX
+Text GLabel 2100 2300 3    60   Input ~ 0
+RX
+Text GLabel 2300 2300 3    60   Input ~ 0
+GND
+Text GLabel 2700 2300 3    60   Input ~ 0
+5
+Text GLabel 2800 2300 3    60   Input ~ 0
+6
+Text GLabel 2900 2300 3    60   Input ~ 0
+7
+Text GLabel 3000 2300 3    60   Input ~ 0
+8
+Text GLabel 3100 2300 3    60   Input ~ 0
+9
 $EndSCHEMATC
