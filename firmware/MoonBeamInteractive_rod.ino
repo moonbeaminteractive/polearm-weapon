@@ -18,6 +18,7 @@ const int buzzerPin = 5;              // buzzer positive pin
 
 const int testPin = 9;
 
+
 /////////// ADXL ///////////
 
 Statistic xStats;
@@ -28,7 +29,7 @@ const int ADXL_ypin = A2;                  // y-axis
 const int ADXL_zpin = A1;                  // z-axis (only on 3-axis models)
 
 #define ADXL_N_VALUES   100               // number of ADXL values for statistics
-#define ADXL_STDEV_THRESHOLD  25          // sigma threshold for accelerometer
+#define ADXL_STDEV_THRESHOLD  50          // sigma threshold for accelerometer
 
 
 /////////// DOTSTAR ///////////
@@ -61,12 +62,30 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 #define DOTSTAR_COLOR_BLANK  0x000000
 
 
+// SPELLS state
 
-                           
+#define SPELL_RED    0
+#define SPELL_GREEN  1
+#define SPELL_BLUE   2
+
+int spell_to_apply = 0;
+
+int spell_count[3] = {0, 0, 0};   // how many times are left to use each spell
+
+
+
+
+
 void setup() {
   // initialize the serial communications:
   Serial.begin(9600);
 
+
+  // Recharge spells
+  // @TODO this info comes from the pickups, through the Vest
+  spell_count[SPELL_RED] = 3;
+  spell_count[SPELL_GREEN] = 3;
+  spell_count[SPELL_BLUE] = 3;
 
   /////////// PUSHBUTTONS, LEDS, BUZZERS ///////////
 
@@ -85,9 +104,9 @@ void setup() {
 
   /////////// DOTSTAR ///////////
 
-  #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000L)
+#if defined(__AVR_ATtiny85__) && (F_CPU == 16000000L)
   clock_prescale_set(clock_div_1); // Enable 16 MHz on Trinket
-  #endif
+#endif
 
   strip.begin(); // Initialize pins for output
   strip.show();  // Turn all LEDs off ASAP
@@ -110,22 +129,26 @@ void loop() {
 
 
 
-/////////// PUSHBUTTONS ///////////
+  /////////// PUSHBUTTONS ///////////
 
 
   int button_reading_green = digitalRead(buttonPin_green);
   int button_reading_blue = digitalRead(buttonPin_blue);
   int button_reading_red = digitalRead(buttonPin_red);
 
-  if(button_reading_green && button_reading_blue && button_reading_red) {
-      digitalWrite(ledPin, HIGH);
+
+  if (button_reading_red) {
+    spell_to_apply = SPELL_RED;
   }
-  else {
-    digitalWrite(ledPin, LOW);
+  else if (button_reading_green) {
+    spell_to_apply = SPELL_GREEN;
+  }
+  else if (button_reading_blue) {
+    spell_to_apply = SPELL_BLUE;
   }
 
 
-/////////// ADXL ///////////
+  /////////// ADXL ///////////
 
   int xval, yval, zval, stdev;
 
@@ -147,55 +170,63 @@ void loop() {
 
   xStats.clear();
 
-/////////// BUZZER ///////////
+  /////////// BUZZER ///////////
 
-  if(stdev > ADXL_STDEV_THRESHOLD) {
-    for(int i = 0; i < 5; ++i) {
-      buzz(100);
+  if (stdev > ADXL_STDEV_THRESHOLD) {   // if wand was moved rapidly
+    if (spell_count[spell_to_apply] > 0)  { // and if we have enough spells left
+      for (int i = 0; i < 4; ++i) {       // apply spell
+        buzz(100 * (spell_to_apply + 1)); // red spell buzzer period: 100ms, green spell buzzer period: 200ms, blue spell buzzer period
+      }
+      spell_count[spell_to_apply]--;      // reduce number of times to apply spell
+    }
+  }
+
+
+
+  /////////// DOTSTAR ///////////
+
+
+
+  if (button_reading_red) {
+    if (spell_count[spell_to_apply] > 0) { // if we have enough spells left
+      for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+        strip.setPixelColor(i, DOTSTAR_COLOR_RED); // Dotstar: red
+      }
+      strip.show();
+      delay(DOTSTAR_DELAY_MS);
+    }
+  }
+
+  if (button_reading_blue) {
+    if (spell_count[spell_to_apply] > 0) { // if we have enough spells left
+      for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+        strip.setPixelColor(i, DOTSTAR_COLOR_BLUE); // blue
+      }
+      strip.show();
+      delay(DOTSTAR_DELAY_MS);
     }
   }
   
-
-
-/////////// DOTSTAR /////////// 
-
-
-  
-  if(button_reading_red) {
-    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-       strip.setPixelColor(i, DOTSTAR_COLOR_RED); // red
+  if (button_reading_green) {
+    if (spell_count[spell_to_apply] > 0) { // if we have enough spells left
+      for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+        strip.setPixelColor(i, DOTSTAR_COLOR_GREEN); // green
+      }
+      strip.show();
+      delay(DOTSTAR_DELAY_MS);
     }
-    strip.show();
-    delay(DOTSTAR_DELAY_MS);
-  }
-
-  if(button_reading_blue) {
-    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-       strip.setPixelColor(i, DOTSTAR_COLOR_BLUE); // blue
-    }
-    strip.show();
-    delay(DOTSTAR_DELAY_MS);
-  }
-  
-  if(button_reading_green) {
-    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-       strip.setPixelColor(i, DOTSTAR_COLOR_GREEN); // green
-    }
-    strip.show();
-    delay(DOTSTAR_DELAY_MS);
-
   }
 
 
 
   for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-       strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW); // yellow
+    strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW); // yellow
   }
   strip.show();
-  
 
 
-  
+
+
 
 
 
@@ -222,17 +253,17 @@ void buzz(int ms) {
 
 
 
-/////////// DOTSTAR /////////// 
+/////////// DOTSTAR ///////////
 void DOTSTAR_INIT() {
-    for (int i = 0; i < DOTSTAR_NUMPIXELS_MANA; ++i) {
+  for (int i = 0; i < DOTSTAR_NUMPIXELS_MANA; ++i) {
     strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW);
     strip.show();
     delay(100);
   }
-  for(int i = DOTSTAR_NUMPIXELS_MANA; i < DOTSTAR_NUMPIXELS; ++i) {
+  for (int i = DOTSTAR_NUMPIXELS_MANA; i < DOTSTAR_NUMPIXELS; ++i) {
     strip.setPixelColor(i, DOTSTAR_COLOR_BLANK);
   }
-  
+
   strip.show();
 
 }
