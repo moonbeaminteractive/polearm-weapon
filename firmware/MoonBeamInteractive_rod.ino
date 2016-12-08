@@ -14,8 +14,9 @@ const int buttonPin_red = 4;
 
 const int ledPin = 13;
 
-const int buzzerPin = 5;              // buzer positive pin
+const int buzzerPin = 5;              // buzzer positive pin
 
+const int testPin = 9;
 
 /////////// ADXL ///////////
 
@@ -36,6 +37,8 @@ const int ADXL_zpin = A1;                  // z-axis (only on 3-axis models)
 #define DOTSTAR_NUMPIXELS_ON  13      // Number of LEDs to be actually used
 #define DOTSTAR_NUMPIXELS_MANA  10   // Number of LEDs for Mana
 
+#define DOTSTAR_DELAY_MS  500
+
 #define DOTSTAR_DATAPIN    6
 #define DOTSTAR_CLOCKPIN   7
 
@@ -51,11 +54,12 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 //Adafruit_DotStar strip = Adafruit_DotStar(NUMPIXELS, DOTSTAR_BRG);
 
 
-#define DOTSTAR_COLOR_BLUE  0xFF0000
+#define DOTSTAR_COLOR_BLUE  0x0000FF
 #define DOTSTAR_COLOR_RED  0x00FF00
-#define DOTSTAR_COLOR_GREEN  0x0000FF
+#define DOTSTAR_COLOR_GREEN  0xFF0000
 #define DOTSTAR_COLOR_YELLOW  0xFFFF00
 #define DOTSTAR_COLOR_BLANK  0x000000
+
 
 
                            
@@ -73,6 +77,8 @@ void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(buzzerPin, OUTPUT);
 
+  pinMode(testPin, OUTPUT);
+  digitalWrite(testPin, HIGH);
 
   /////////// ADXL ///////////
   xStats.clear(); //explicitly start clean
@@ -99,6 +105,10 @@ void setup() {
 
 
 void loop() {
+
+
+
+
 
 /////////// PUSHBUTTONS ///////////
 
@@ -141,7 +151,7 @@ void loop() {
 
   if(stdev > ADXL_STDEV_THRESHOLD) {
     for(int i = 0; i < 5; ++i) {
-      buzz();
+      buzz(100);
     }
   }
   
@@ -152,18 +162,41 @@ void loop() {
 
   
   if(button_reading_red) {
-    DOTSTAR_FLASH(DOTSTAR_COLOR_RED);
+    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+       strip.setPixelColor(i, DOTSTAR_COLOR_RED); // red
+    }
+    strip.show();
+    delay(DOTSTAR_DELAY_MS);
   }
 
   if(button_reading_blue) {
-    DOTSTAR_FLASH(DOTSTAR_COLOR_BLUE);
+    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+       strip.setPixelColor(i, DOTSTAR_COLOR_BLUE); // blue
+    }
+    strip.show();
+    delay(DOTSTAR_DELAY_MS);
   }
   
   if(button_reading_green) {
-    DOTSTAR_FLASH(DOTSTAR_COLOR_GREEN);
+    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+       strip.setPixelColor(i, DOTSTAR_COLOR_GREEN); // green
+    }
+    strip.show();
+    delay(DOTSTAR_DELAY_MS);
+
   }
 
+
+
+  for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+       strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW); // yellow
+  }
+  strip.show();
   
+
+
+  
+
 
 
 
@@ -178,11 +211,11 @@ void loop() {
 
 
 /////////// BUZZER ///////////
-void buzz() {
+void buzz(int ms) {
   digitalWrite(buzzerPin, HIGH);
-  delay(100);
+  delay(ms);
   digitalWrite(buzzerPin, LOW);
-  delay(100);
+  delay(ms);
 }
 
 
@@ -204,20 +237,5 @@ void DOTSTAR_INIT() {
 
 }
 
-void DOTSTAR_FLASH(int color) {
-  for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-    strip.setPixelColor(i, color);
-  }
-  strip.show();
-  delay(100);
-  
-  for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-    strip.setPixelColor(i, DOTSTAR_COLOR_BLANK);
-  }
-  strip.show();
-  delay(100);
-  
-// millis()
 
-}
 
