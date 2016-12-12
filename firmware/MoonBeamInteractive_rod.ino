@@ -73,13 +73,17 @@ int spell_to_apply = 0;
 int spell_count[3] = {0, 0, 0};   // how many times are left to use each spell
 
 
-
+//SPELL DELAY TIME
+int spell_dalayed = 1; //1 represents currently the spell is deplayed, 0 means the spell is not deplayed
 
 
 void setup() {
   // initialize the serial communications:
   Serial.begin(9600);
-
+  
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
 
   // Recharge spells
   // @TODO this info comes from the pickups, through the Vest
@@ -125,8 +129,15 @@ void setup() {
 
 void loop() {
 
-
-
+ ///////// RECEIVE PICKUP FROM VEST ////////
+   if (Serial.available()){
+    incomingByte = Serial.read();
+     if (incomingByte == 'r') { //this can be anything coming from the vest
+     // Serial.print("I received: ");
+     // Serial.println(incomingByte);
+      spell_deplayed = 1; //now the spell is not deplayed
+     }
+  }
 
 
   /////////// PUSHBUTTONS ///////////
