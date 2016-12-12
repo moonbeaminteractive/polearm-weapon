@@ -73,9 +73,12 @@ int spell_to_apply = 0;
 int spell_count[3] = {0, 0, 0};   // how many times are left to use each spell
 
 
-//SPELL DELAY TIME
-int spell_dalayed = 1; //1 represents currently the spell is deplayed, 0 means the spell is not deplayed
+//SPELL DELAYED
+int spell_delay = {0, 0, 0}; //1 represents currently the spell is deplayed, 0 means the spell is not deplayed
 
+int delay_spell_a = 0;
+int delay_spell_b = 0;
+int delay_spell_c = 0;
 
 void setup() {
   // initialize the serial communications:
@@ -125,17 +128,15 @@ void setup() {
 
 
 
-
-
 void loop() {
 
  ///////// RECEIVE PICKUP FROM VEST ////////
    if (Serial.available()){
-    incomingByte = Serial.read();
-     if (incomingByte == 'r') { //this can be anything coming from the vest
+    incomingArray = Serial.read();
+     if (incomingArray == 'r') { //this can be anything coming from the vest
      // Serial.print("I received: ");
      // Serial.println(incomingByte);
-      spell_deplayed = 1; //now the spell is not deplayed
+      spell_deplayed = 1; //now the spell is recharged
      }
   }
 
