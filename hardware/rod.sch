@@ -28,7 +28,6 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:w_device
 LIBS:rod-cache
 EELAYER 25 0
 EELAYER END
@@ -36,11 +35,11 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Rod"
-Date "2016-11-22"
+Date "2016-12-13"
 Rev ""
-Comp ""
-Comment1 ""
-Comment2 ""
+Comp "Moonbeam Interactive"
+Comment1 "Edith Li"
+Comment2 "Matthew Swarts"
 Comment3 ""
 Comment4 ""
 $EndDescr
@@ -69,168 +68,160 @@ $EndComp
 $Comp
 L CONN_01X05 P3
 U 1 1 5840678B
-P 5350 3550
-F 0 "P3" H 5350 3850 50  0000 C CNN
-F 1 "GYRO" V 5450 3550 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x05" H 5350 3550 50  0001 C CNN
-F 3 "" H 5350 3550 50  0000 C CNN
-	1    5350 3550
+P 7825 2825
+F 0 "P3" H 7825 3125 50  0000 C CNN
+F 1 "GYRO" V 7925 2825 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x05" H 7825 2825 50  0001 C CNN
+F 3 "" H 7825 2825 50  0000 C CNN
+	1    7825 2825
 	1    0    0    -1  
 $EndComp
-Text GLabel 5150 3350 0    60   Input ~ 0
+Text GLabel 7625 2625 0    60   Input ~ 0
 GND
-Text GLabel 5150 3750 0    60   Input ~ 0
-PWR
+Text GLabel 7625 3025 0    60   Input ~ 0
+V33
 $Comp
 L R R1
 U 1 1 58406A0D
-P 4400 3900
-F 0 "R1" V 4480 3900 50  0000 C CNN
-F 1 "R" V 4400 3900 50  0000 C CNN
-F 2 "Resistors_SMD:R_1206" V 4330 3900 50  0001 C CNN
-F 3 "" H 4400 3900 50  0000 C CNN
-	1    4400 3900
-	0    -1   -1   0   
+P 2025 5075
+F 0 "R1" V 2105 5075 50  0000 C CNN
+F 1 "10K" V 2025 5075 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 1955 5075 50  0001 C CNN
+F 3 "" H 2025 5075 50  0000 C CNN
+	1    2025 5075
+	1    0    0    -1  
 $EndComp
 $Comp
 L SW_PUSH SW1
 U 1 1 58406ACB
-P 4650 3600
-F 0 "SW1" H 4800 3710 50  0000 C CNN
-F 1 "SW_PUSH_R" H 4650 3520 50  0000 C CNN
-F 2 "Buttons_Switches_ThroughHole:SW_PUSH-12mm" H 4650 3600 50  0001 C CNN
-F 3 "" H 4650 3600 50  0000 C CNN
-	1    4650 3600
+P 2025 4525
+F 0 "SW1" H 2175 4635 50  0000 C CNN
+F 1 "SW_PUSH_R" H 2025 4445 50  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_PUSH-12mm" H 2025 4525 50  0001 C CNN
+F 3 "" H 2025 4525 50  0000 C CNN
+	1    2025 4525
 	0    1    1    0   
 $EndComp
-Text GLabel 4650 3300 1    60   Input ~ 0
-PWR
-Text GLabel 4250 3900 0    60   Input ~ 0
+Text GLabel 2025 4225 1    60   Input ~ 0
+V33
+Text GLabel 2025 5225 3    60   Input ~ 0
 GND
 Wire Wire Line
-	4650 3900 4550 3900
-Wire Wire Line
-	4650 3900 4650 4000
-Text GLabel 4650 4000 3    60   Input ~ 0
-6
+	2025 4825 2025 4925
+Text GLabel 1900 4875 0    60   Input ~ 0
+D8
 $Comp
 L R R2
 U 1 1 58406D61
-P 4400 5050
-F 0 "R2" V 4480 5050 50  0000 C CNN
-F 1 "R" V 4400 5050 50  0000 C CNN
-F 2 "Resistors_SMD:R_1206" V 4330 5050 50  0001 C CNN
-F 3 "" H 4400 5050 50  0000 C CNN
-	1    4400 5050
-	0    -1   -1   0   
+P 2800 5075
+F 0 "R2" V 2880 5075 50  0000 C CNN
+F 1 "10K" V 2800 5075 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 2730 5075 50  0001 C CNN
+F 3 "" H 2800 5075 50  0000 C CNN
+	1    2800 5075
+	1    0    0    -1  
 $EndComp
 $Comp
 L SW_PUSH SW2
 U 1 1 58406D67
-P 4650 4750
-F 0 "SW2" H 4800 4860 50  0000 C CNN
-F 1 "SW_PUSH_G" H 4650 4670 50  0000 C CNN
-F 2 "Buttons_Switches_ThroughHole:SW_PUSH-12mm" H 4650 4750 50  0001 C CNN
-F 3 "" H 4650 4750 50  0000 C CNN
-	1    4650 4750
+P 2800 4525
+F 0 "SW2" H 2950 4635 50  0000 C CNN
+F 1 "SW_PUSH_G" H 2800 4445 50  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_PUSH-12mm" H 2800 4525 50  0001 C CNN
+F 3 "" H 2800 4525 50  0000 C CNN
+	1    2800 4525
 	0    1    1    0   
 $EndComp
-Text GLabel 4650 4450 1    60   Input ~ 0
-PWR
-Text GLabel 4250 5050 0    60   Input ~ 0
+Text GLabel 2800 4225 1    60   Input ~ 0
+V33
+Text GLabel 2800 5225 3    60   Input ~ 0
 GND
 Wire Wire Line
-	4650 5050 4550 5050
-Wire Wire Line
-	4650 5050 4650 5150
-Text GLabel 4650 5150 3    60   Input ~ 0
-5
+	2800 4825 2800 4925
+Text GLabel 2675 4875 0    60   Input ~ 0
+D9
 $Comp
 L R R3
 U 1 1 58406E3E
-P 4400 6200
-F 0 "R3" V 4480 6200 50  0000 C CNN
-F 1 "R" V 4400 6200 50  0000 C CNN
-F 2 "Resistors_SMD:R_1206" V 4330 6200 50  0001 C CNN
-F 3 "" H 4400 6200 50  0000 C CNN
-	1    4400 6200
-	0    -1   -1   0   
+P 3600 5075
+F 0 "R3" V 3680 5075 50  0000 C CNN
+F 1 "10K" V 3600 5075 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 3530 5075 50  0001 C CNN
+F 3 "" H 3600 5075 50  0000 C CNN
+	1    3600 5075
+	1    0    0    -1  
 $EndComp
 $Comp
 L SW_PUSH SW3
 U 1 1 58406E44
-P 4650 5900
-F 0 "SW3" H 4800 6010 50  0000 C CNN
-F 1 "SW_PUSH_B" H 4650 5820 50  0000 C CNN
-F 2 "Buttons_Switches_ThroughHole:SW_PUSH-12mm" H 4650 5900 50  0001 C CNN
-F 3 "" H 4650 5900 50  0000 C CNN
-	1    4650 5900
+P 3600 4525
+F 0 "SW3" H 3750 4635 50  0000 C CNN
+F 1 "SW_PUSH_B" H 3600 4445 50  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_PUSH-12mm" H 3600 4525 50  0001 C CNN
+F 3 "" H 3600 4525 50  0000 C CNN
+	1    3600 4525
 	0    1    1    0   
 $EndComp
-Text GLabel 4650 5600 1    60   Input ~ 0
-PWR
-Text GLabel 4250 6200 0    60   Input ~ 0
+Text GLabel 3600 4225 1    60   Input ~ 0
+V33
+Text GLabel 3600 5225 3    60   Input ~ 0
 GND
 Wire Wire Line
-	4650 6200 4550 6200
-Wire Wire Line
-	4650 6200 4650 6300
-Text GLabel 4650 6300 3    60   Input ~ 0
-4
+	3600 4825 3600 4925
+Text GLabel 3525 4875 0    60   Input ~ 0
+D6
 $Comp
 L CONN_01X04 P4
 U 1 1 5840776A
-P 5350 4300
-F 0 "P4" H 5350 4550 50  0000 C CNN
-F 1 "DOTSTAR" V 5450 4300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04" H 5350 4300 50  0001 C CNN
-F 3 "" H 5350 4300 50  0000 C CNN
-	1    5350 4300
+P 8150 4875
+F 0 "P4" H 8150 5125 50  0000 C CNN
+F 1 "DOTSTAR" V 8250 4875 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04" H 8150 4875 50  0001 C CNN
+F 3 "" H 8150 4875 50  0000 C CNN
+	1    8150 4875
 	1    0    0    -1  
 $EndComp
-Text GLabel 5150 4150 0    60   Input ~ 0
+Text GLabel 7950 5025 0    60   Input ~ 0
 GND
-Text GLabel 5150 4450 0    60   Input ~ 0
-PWR
-Text GLabel 5150 4250 0    60   Input ~ 0
-3
-Text GLabel 5150 4350 0    60   Input ~ 0
-2
+Text GLabel 7950 4725 0    60   Input ~ 0
+V50
+Text GLabel 6400 5625 0    60   Input ~ 0
+D5
 $Comp
 L buzzer BZ1
 U 1 1 58408201
-P 5350 4850
-F 0 "BZ1" H 5425 4900 50  0000 L CNN
-F 1 "buzzer" H 5425 4800 50  0000 L CNN
-F 2 "Buzzers_Beepers:MagneticBuzzer_Kingstate_KCG0601" H 5350 4850 60  0001 C CNN
-F 3 "" H 5350 4850 60  0000 C CNN
-	1    5350 4850
+P 5175 4325
+F 0 "BZ1" H 5250 4375 50  0000 L CNN
+F 1 "buzzer" H 5250 4275 50  0000 L CNN
+F 2 "Buzzers_Beepers:Buzzer_12x9.5RM7.6" H 5175 4325 60  0001 C CNN
+F 3 "" H 5175 4325 60  0000 C CNN
+	1    5175 4325
 	1    0    0    -1  
 $EndComp
-Text GLabel 5150 3650 0    60   Input ~ 0
+Text GLabel 7625 2925 0    60   Input ~ 0
 A1
-Text GLabel 5150 3550 0    60   Input ~ 0
+Text GLabel 7625 2825 0    60   Input ~ 0
 A2
-Text GLabel 5150 3450 0    60   Input ~ 0
+Text GLabel 7625 2725 0    60   Input ~ 0
 A3
-Text GLabel 5300 4900 0    60   Input ~ 0
+Text GLabel 4800 5075 3    60   Input ~ 0
 GND
-Text GLabel 5300 4800 0    60   Input ~ 0
-7
+Text GLabel 4200 4875 0    60   Input ~ 0
+D3
 Text GLabel 4450 2250 0    60   Input ~ 0
-2
+D2
 Text GLabel 4450 2350 0    60   Input ~ 0
-3
+D3
 Text GLabel 4450 2450 0    60   Input ~ 0
-4
+D4
 Text GLabel 5400 2950 2    60   Input ~ 0
-10
+D10
 Text GLabel 5400 2850 2    60   Input ~ 0
-11
+D11
 Text GLabel 5400 2750 2    60   Input ~ 0
-12
+D12
 Text GLabel 5400 2650 2    60   Input ~ 0
-13
+D13
 Text GLabel 5400 2550 2    60   Input ~ 0
 A0
 Text GLabel 5400 2450 2    60   Input ~ 0
@@ -239,43 +230,266 @@ Text GLabel 5400 2350 2    60   Input ~ 0
 A2
 Text GLabel 5400 1950 2    60   Input ~ 0
 GND
-Text GLabel 5400 2150 2    60   Input ~ 0
-PWR
+Text GLabel 5400 1850 2    60   Input ~ 0
+V50
 Text GLabel 4450 1850 0    60   Input ~ 0
-TX
+TX(Weapon)
 Text GLabel 4450 1950 0    60   Input ~ 0
-RX
+RX(Weapon)
 Text GLabel 4450 2150 0    60   Input ~ 0
 GND
 Text GLabel 4450 2550 0    60   Input ~ 0
-5
+D5
 Text GLabel 4450 2650 0    60   Input ~ 0
-6
+D6
 Text GLabel 4450 2750 0    60   Input ~ 0
-7
+D7
 Text GLabel 4450 2850 0    60   Input ~ 0
-8
+D8
 Text GLabel 4450 2950 0    60   Input ~ 0
-9
+D9
 $Comp
 L USB_B P5
 U 1 1 5849FBDE
-P 5050 6850
-F 0 "P5" H 5250 6650 50  0000 C CNN
-F 1 "USB_B" H 5000 7050 50  0000 C CNN
-F 2 "Connect:USB_B" V 5000 6750 50  0001 C CNN
-F 3 "" V 5000 6750 50  0000 C CNN
-	1    5050 6850
+P 2750 2600
+F 0 "P5" H 2950 2400 50  0000 C CNN
+F 1 "USB_B" H 2700 2800 50  0000 C CNN
+F 2 "Connect:USB_B" V 2700 2500 50  0001 C CNN
+F 3 "" V 2700 2500 50  0000 C CNN
+	1    2750 2600
 	1    0    0    -1  
 $EndComp
-Text GLabel 4850 7150 3    60   Input ~ 0
-PWR
-Text GLabel 5150 7150 3    60   Input ~ 0
+Text GLabel 2550 3300 3    60   Input ~ 0
+V50
+Text GLabel 2850 2900 3    60   Input ~ 0
 GND
-Text GLabel 4950 7150 3    60   Input ~ 0
-TX
-Text GLabel 5050 7150 3    60   Input ~ 0
-RX
 Text GLabel 5400 2250 2    60   Input ~ 0
 A3
+Wire Wire Line
+	1900 4875 2025 4875
+Connection ~ 2025 4875
+Wire Wire Line
+	2675 4875 2800 4875
+Connection ~ 2800 4875
+Wire Wire Line
+	3525 4875 3600 4875
+Connection ~ 3600 4875
+Text GLabel 2650 2900 3    60   Input ~ 0
+RX(Weapon)
+Text GLabel 2750 2900 3    60   Input ~ 0
+TX(Weapon)
+$Comp
+L MMBT3904 Q1
+U 1 1 584F8ECD
+P 4700 4875
+F 0 "Q1" H 4900 4950 50  0000 L CNN
+F 1 "MMBT3904" H 4900 4875 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 4900 4800 50  0000 L CIN
+F 3 "" H 4700 4875 50  0000 L CNN
+	1    4700 4875
+	1    0    0    -1  
+$EndComp
+$Comp
+L INDUCTOR_SMALL L1
+U 1 1 584F8F79
+P 4800 4325
+F 0 "L1" H 4800 4425 50  0000 C CNN
+F 1 "INDUCTOR_SMALL" H 4800 4275 50  0000 C CNN
+F 2 "Resistors_Universal:Resistor_SMD+THTuniversal_1206_RM10_HandSoldering" H 4800 4325 50  0001 C CNN
+F 3 "" H 4800 4325 50  0000 C CNN
+	1    4800 4325
+	0    1    1    0   
+$EndComp
+$Comp
+L R R4
+U 1 1 584F9738
+P 4350 4875
+F 0 "R4" V 4430 4875 50  0000 C CNN
+F 1 "1K" V 4350 4875 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 4280 4875 50  0001 C CNN
+F 3 "" H 4350 4875 50  0000 C CNN
+	1    4350 4875
+	0    -1   -1   0   
+$EndComp
+Text GLabel 4800 3975 1    60   Input ~ 0
+V50
+Wire Wire Line
+	4800 3975 4800 4075
+Wire Wire Line
+	4800 4025 5125 4025
+Wire Wire Line
+	5125 4025 5125 4275
+Connection ~ 4800 4025
+Wire Wire Line
+	4800 4575 4800 4675
+Wire Wire Line
+	4800 4625 5125 4625
+Wire Wire Line
+	5125 4625 5125 4375
+Connection ~ 4800 4625
+Text GLabel 7950 4825 0    60   Input ~ 0
+CLOCK_IN
+Text GLabel 7950 4925 0    60   Input ~ 0
+DATA_IN
+$Comp
+L BSS138 Q2
+U 1 1 584FBA98
+P 6700 4225
+F 0 "Q2" H 6900 4300 50  0000 L CNN
+F 1 "BSS138" H 6900 4225 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 6900 4150 50  0001 L CIN
+F 3 "" H 6700 4225 50  0000 L CNN
+	1    6700 4225
+	0    1    1    0   
+$EndComp
+$Comp
+L R R6
+U 1 1 584FBD35
+P 6450 4125
+F 0 "R6" V 6530 4125 50  0000 C CNN
+F 1 "10K" V 6450 4125 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 6380 4125 50  0001 C CNN
+F 3 "" H 6450 4125 50  0000 C CNN
+	1    6450 4125
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R5
+U 1 1 584FBFDE
+P 6450 3775
+F 0 "R5" V 6530 3775 50  0000 C CNN
+F 1 "0" V 6450 3775 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 6380 3775 50  0001 C CNN
+F 3 "" H 6450 3775 50  0000 C CNN
+	1    6450 3775
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R8
+U 1 1 584FC03C
+P 6950 4125
+F 0 "R8" V 7030 4125 50  0000 C CNN
+F 1 "1K" V 6950 4125 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 6880 4125 50  0001 C CNN
+F 3 "" H 6950 4125 50  0000 C CNN
+	1    6950 4125
+	-1   0    0    1   
+$EndComp
+Text GLabel 6950 3925 1    60   Input ~ 0
+V50
+Text GLabel 5400 2150 2    60   Input ~ 0
+V33
+Text GLabel 6450 3575 1    60   Input ~ 0
+V33
+Text GLabel 6400 4325 0    60   Input ~ 0
+D4
+$Comp
+L BSS138 Q3
+U 1 1 584FDBF0
+P 6700 5525
+F 0 "Q3" H 6900 5600 50  0000 L CNN
+F 1 "BSS138" H 6900 5525 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 6900 5450 50  0001 L CIN
+F 3 "" H 6700 5525 50  0000 L CNN
+	1    6700 5525
+	0    1    1    0   
+$EndComp
+$Comp
+L R R7
+U 1 1 584FDBF6
+P 6450 5425
+F 0 "R7" V 6530 5425 50  0000 C CNN
+F 1 "10K" V 6450 5425 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 6380 5425 50  0001 C CNN
+F 3 "" H 6450 5425 50  0000 C CNN
+	1    6450 5425
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R9
+U 1 1 584FDC02
+P 6950 5425
+F 0 "R9" V 7030 5425 50  0000 C CNN
+F 1 "1K" V 6950 5425 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 6880 5425 50  0001 C CNN
+F 3 "" H 6950 5425 50  0000 C CNN
+	1    6950 5425
+	-1   0    0    1   
+$EndComp
+Text GLabel 6950 5225 1    60   Input ~ 0
+V50
+Text GLabel 6450 5225 1    60   Input ~ 0
+V33
+Text GLabel 7000 4325 2    60   Input ~ 0
+CLOCK_IN
+Text GLabel 7000 5625 2    60   Input ~ 0
+DATA_IN
+Wire Wire Line
+	6450 3575 6450 3625
+Wire Wire Line
+	6450 3925 6450 3975
+Wire Wire Line
+	6400 4325 6500 4325
+Wire Wire Line
+	6450 4275 6450 4325
+Connection ~ 6450 4325
+Wire Wire Line
+	6900 4325 7000 4325
+Wire Wire Line
+	6950 4275 6950 4325
+Connection ~ 6950 4325
+Wire Wire Line
+	6950 3925 6950 3975
+Wire Wire Line
+	6450 5225 6450 5275
+Wire Wire Line
+	6400 5625 6500 5625
+Wire Wire Line
+	6450 5575 6450 5625
+Connection ~ 6450 5625
+Wire Wire Line
+	6900 5625 7000 5625
+Wire Wire Line
+	6950 5575 6950 5625
+Connection ~ 6950 5625
+Wire Wire Line
+	6950 5225 6950 5275
+Wire Wire Line
+	6650 5325 6650 5250
+Wire Wire Line
+	6650 5250 6450 5250
+Connection ~ 6450 5250
+Wire Wire Line
+	6300 3600 6650 3600
+Wire Wire Line
+	6650 3600 6650 4025
+Connection ~ 6450 3600
+Wire Wire Line
+	6450 3950 6300 3950
+Wire Wire Line
+	6300 3950 6300 3600
+Connection ~ 6450 3950
+$Comp
+L R R10
+U 1 1 584FF1B7
+P 2550 3100
+F 0 "R10" V 2630 3100 50  0000 C CNN
+F 1 "0" V 2550 3100 50  0000 C CNN
+F 2 "Resistors_Universal:Resistor_SMD+THTuniversal_2512_RM10_HandSoldering" V 2480 3100 50  0001 C CNN
+F 3 "" H 2550 3100 50  0000 C CNN
+	1    2550 3100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2550 2900 2550 2950
+Wire Wire Line
+	2550 3250 2550 3300
+Wire Wire Line
+	2550 3275 2425 3275
+Wire Wire Line
+	2425 3275 2425 2925
+Wire Wire Line
+	2425 2925 2550 2925
+Connection ~ 2550 2925
+Connection ~ 2550 3275
 $EndSCHEMATC
