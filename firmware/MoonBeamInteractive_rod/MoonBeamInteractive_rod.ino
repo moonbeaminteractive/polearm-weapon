@@ -70,7 +70,7 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 int spell_to_apply = 0;
 
 //SPELL DELAY TIMER
-#define DEFAULT_BLOCKOUT 2000
+#define DEFAULT_BLOCKOUT 30000  //30 seconds
 #define BOOSTED_BLOCKOUT 10000
 unsigned long set_blockout_time;    //TODO: MAKE THIS 20 OR 30 SECONDS LATER. OR MAYBE EVEN A MINUTE
 
@@ -89,10 +89,7 @@ void setup() {
  // }
 
   // Recharge spells
-  // @TODO this info comes from the pickups, through the Vest
-  /*spell_count[SPELL_RED] = 3;
-  spell_count[SPELL_GREEN] = 3;
-  spell_count[SPELL_BLUE] = 3;*/
+
   set_blockout_time = DEFAULT_BLOCKOUT;
 
   /////////// PUSHBUTTONS, LEDS, BUZZERS ///////////
@@ -154,14 +151,20 @@ void loop() {
   if (button_reading_red) {
     spell_to_apply = SPELL_RED;
     //tone(5,10000);
+    //buzz(100);
+    Serial.println("red pressed");
   }
   else if (button_reading_green) {
     spell_to_apply = SPELL_GREEN;
     //tone(5,5000);
+    //buzz(100);
+    Serial.println("green pressed");
   }
   else if (button_reading_blue) {
     spell_to_apply = SPELL_BLUE;
     //tone(5,50000);
+    //buzz(100);
+    Serial.println("blue pressed");
   }
   else
   {
@@ -213,48 +216,24 @@ void loop() {
 
         }
 
-
-
-      /////////// DOTSTAR ///////////
-
-        if (button_reading_red) {
-          //if (spell_count[spell_to_apply] > 0) { // if we have enough spells left
+        else{
             for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-              strip.setPixelColor(i, DOTSTAR_COLOR_RED); // Dotstar: red
-            }
+              strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW); // yellow
+              }
             strip.show();
-            delay(DOTSTAR_DELAY_MS);
-          //}
-        }
-      
-        if (button_reading_blue) {
-          //if (spell_count[spell_to_apply] > 0) { // if we have enough spells left
-            for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-              strip.setPixelColor(i, DOTSTAR_COLOR_BLUE); // blue
-            }
-            strip.show();
-            delay(DOTSTAR_DELAY_MS);
-         // }
-        }
-        
-        if (button_reading_green) {
-          //if (spell_count[spell_to_apply] > 0) { // if we have enough spells left
-            for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-              strip.setPixelColor(i, DOTSTAR_COLOR_GREEN); // green
-            }
-            strip.show();
-            delay(DOTSTAR_DELAY_MS);
-          //}
         }
     
+     }
 
+     else
+     {
+        for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+        strip.setPixelColor(i, DOTSTAR_COLOR_BLANK);
+          }
 
-      for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
-        strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW); // yellow
-      }
-      strip.show();
-
-    }
+        strip.show();
+     }
+   
 
 }
 
@@ -278,7 +257,29 @@ void setBlockoutTime(boolean pickup_present)
 
 
 /////////// BUZZER ///////////
-void buzz(int ms) {
+void buzz(int spell) {
+  int ms = 100*spell;
+  if(spell == SPELL_RED)
+  {
+     for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+              strip.setPixelColor(i, DOTSTAR_COLOR_RED); // Dotstar: red
+            }
+            strip.show();  
+  }
+  else if(spell == SPELL_GREEN)
+  {
+    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+              strip.setPixelColor(i, DOTSTAR_COLOR_GREEN); // Dotstar: red
+            }
+            strip.show();
+  }
+  else if(spell==SPELL_BLUE)
+  {
+    for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+              strip.setPixelColor(i, DOTSTAR_COLOR_BLUE); // Dotstar: red
+            }
+            strip.show();
+  }
   digitalWrite(buzzerPin, HIGH);
   delay(ms);
   digitalWrite(buzzerPin, LOW);
@@ -291,12 +292,10 @@ void castSpell(int req_spell_to_apply)    // apply spell
 {
    for (int i = 0; i < 4; ++i) 
    {       
-      buzz(100 * (req_spell_to_apply));  // red spell buzzer period: 100ms, green spell buzzer period: 200ms, blue spell buzzer period
+      buzz(req_spell_to_apply);  // red spell buzzer period: 100ms, green spell buzzer period: 200ms, blue spell buzzer period
       
    }
-   //spell_count[spell_to_apply]--;      // reduce number of times to apply spell
-   //Serial.println("***************************SPELL CAST!");
-   //start delay timer again from 0
+
 }
 
 
