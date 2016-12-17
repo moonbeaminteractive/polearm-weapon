@@ -27,4 +27,7 @@ Push button: Different combinations of push buttons will send different kinds of
 USB-B: Receives serial information from the vest for shorter spell recharge deplay.
 
 
+![Circuit](https://github.com/moonbeaminteractive/polearm-weapon/blob/master/hardware/circuit.PNG)  
+
+![PCB](https://github.com/moonbeaminteractive/polearm-weapon/blob/master/hardware/PCB.PNG)  
 
