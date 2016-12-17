@@ -5,11 +5,22 @@ pole rod staff based weapon for short range area events
 Wand/rod is a weapon which can cast three different kinds of spells by sending sound signals to the vest. The kind of spell is visualized by the led strip on the wand. There will be deplay between each spell, and the delay time can be shortened by one of the pickups. In order to cast a spell, the player has to both swing the rod to activate it and push one of the three buttons to cast a specific type of spell. 
 
 ##Software: 
+
+Prerequisite libraries:  <br/>
 Statistic.h  <br/>
 Adafruit_DotStar.h <br/>
 
 Statistic.h: calculates the swing variance of the gyro sensor  <br/>
 Adafruit_DotStar.h: controls the RGB lighting on the led strip  <br/>
+
+
+The software continuously polls the 3 rod buttons (red, green, blue) to select a spell. <br/>
+Also, it continuously logs ADXL accelerometer data in blocks of 100 values and calculates the variance of the samples. Using the variance instead of the raw values allows the tracking of rapid wand motions to cast a spell, no matter what the initial direction of the wand is. <br/>
+
+When casting each spell, the DotStar LEDs light up with the respective color (blue for the blue button, red for the red button, green for the green button) to conveniently visualize which spell has been selected. Additional functionality is implemented to drive a buzzer with a frequency that depends on the spell that is casted. For the red spell, a buzzer tone with period of 100 ms is generated, for the green a tone with 200 ms period is generated, and for the blue a tone with 300 ms period is generated. <br/>
+
+Time-sensitive functions of the code have been implemented with the millis() function to avoid blocking that the delay() function introduces. <br/>
+
 
 
 ##Hardware: 
