@@ -16,8 +16,6 @@ const int ledPin = 13;
 
 const int buzzerPin = 3;              // buzzer positive pin
 
-//const int testPin = 9;
-
 
 /////////// ADXL ///////////
 
@@ -77,8 +75,10 @@ unsigned long set_blockout_time;    //TODO: MAKE THIS 20 OR 30 SECONDS LATER. OR
 boolean spell_castable = true;
 unsigned long blockout_start_time = 0;
 
-//PICKUP PRESENT CHECK
-//boolean pickup_present = true;
+//PICKUPS
+boolean pickup_present = true;
+#define RECHARGE_AMMO_INDEX 0       //pre decided ammo bit from the string broadcasted by the vest
+boolean prev_pickup_present = false;
 
 void setup() {
   // initialize the serial communications:
@@ -123,26 +123,35 @@ void setup() {
 
 
 
-
-
-
 void loop() {
 
  ///////// RECEIVE PICKUP FROM VEST ////////
-//   if (Serial.available()){
-  //  incomingArray = Serial.read();
-    // if (incomingArray == 'r') { //this can be anything coming from the vest
-     // Serial.print("I received: ");
-     // Serial.println(incomingByte);
-     // spell_delayed = 1; //now the spell is recharged
-    // }
-    //setBlockoutTime(pickup_bit_bool);
- // }
+ if (Serial.available())
+    {
+        String incomingString = Serial.readString();
+        if (incomingString.length()>0) //this can be anything coming from the vest
+        { 
+               Serial.print("I received: ");
+               Serial.println(incomingString);
+               char bitOfInterest = incomingString[RECHARGE_AMMO_INDEX];  //change this later, maybe
+               
+               if(bitOfInterest=='1')
+               {
+                  pickup_present = true;
+                  //Serial.print("bit of interest = 1");
+               }
+               else
+               {
+                  pickup_present = false;
+                  //Serial.print("bit of interest = 0");
+               }
+         }
+        setBlockoutTime(pickup_present);
+  }
 
 
   /////////// PUSHBUTTONS ///////////
-
-
+  
   int button_reading_green = digitalRead(buttonPin_green);
   int button_reading_blue = digitalRead(buttonPin_blue);
   int button_reading_red = digitalRead(buttonPin_red);
@@ -151,20 +160,14 @@ void loop() {
   if (button_reading_red) {
     spell_to_apply = SPELL_RED;
     //tone(5,10000);
-    //buzz(100);
-    Serial.println("red pressed");
   }
   else if (button_reading_green) {
     spell_to_apply = SPELL_GREEN;
     //tone(5,5000);
-    //buzz(100);
-    Serial.println("green pressed");
   }
   else if (button_reading_blue) {
     spell_to_apply = SPELL_BLUE;
     //tone(5,50000);
-    //buzz(100);
-    Serial.println("blue pressed");
   }
   else
   {
@@ -182,21 +185,16 @@ void loop() {
     yval = analogRead(ADXL_ypin);
     zval = analogRead(ADXL_zpin);
 
-    // delay before next reading:
-    //delay(10);
-
     xStats.add(xval);
 
   }
 
   stdev = xStats.unbiased_stdev();
-  Serial.print(stdev);
-  Serial.println();
+  //Serial.println(stdev);            //UNCOMMENT FOR SEEING MOTION ON SERIAL PLOTTER!
 
   xStats.clear();
 
   ///////////Setting delay timer for each spell//////////////
-  //set the boolean to true if millis are crossed, and you can stop incrementing them?
   if(millis()-blockout_start_time > set_blockout_time)
   {
       spell_castable = true;
@@ -241,16 +239,36 @@ void loop() {
 
 
 ////////// function for updating blockout times, based on pickup information //////////
-void setBlockoutTime(boolean pickup_present)
+void setBlockoutTime(boolean pickup)
 {
-    if(pickup_present)
+    if(pickup)
     {
         set_blockout_time = BOOSTED_BLOCKOUT;
+        //show booster
+        //flash 5 times!
+        if(!prev_pickup_present)
+        {
+              for(int j=0; j<5; j++)
+              {
+                  for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+                    strip.setPixelColor(i, DOTSTAR_COLOR_BLANK); // Dotstar: red
+                    }
+                  strip.show();
+                  delay(200);
+                  for (int i = 0; i < DOTSTAR_NUMPIXELS; ++i) {
+                    strip.setPixelColor(i, DOTSTAR_COLOR_YELLOW); // Dotstar: red
+                    }
+                  strip.show();
+                  delay(200);
+              }
+        }
     }
     else
     {
         set_blockout_time = DEFAULT_BLOCKOUT;
+        
     }
+    prev_pickup_present = pickup;
 }
 
 
