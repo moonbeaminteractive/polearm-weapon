@@ -21,6 +21,16 @@ When casting each spell, the DotStar LEDs light up with the respective color (bl
 
 Time-sensitive functions of the code have been implemented with the millis() function to avoid blocking that the delay() function introduces. <br/>
 
+##Usage Settings:
+Current settings:<br/>
+Default blockout - 30 seconds (slow recharge)<br/>
+Blockout with pickup - 10 seconds (faster boosted recharge)<br/>
+
+When a weapon booster pickup is correctly attached, the wand flashes 5 times to notify the user that it has detected and activated it. The wand glows a default yellow color when active, and whenever a spell is castable. If it is timed out, on blockout after casting a spell, all lights on the wand will switch off until it is recharged again. On casting a spell, the wand glows the same color as the spell.<br/>
+
+To use, plug in a USB-A to USB-B connector between the wand and the vest.<br/>
+
+
 
 
 ##Hardware: 
